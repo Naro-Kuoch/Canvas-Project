@@ -1,8 +1,11 @@
-
+body{
+    background-color: black;
+}
 
 canvas {
-    background: #eee;
+    margin: auto;
+    margin-top: 70px;
+    background: #20761D;
     display: block;
-    margin: auto; 
 }
     

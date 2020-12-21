@@ -4,8 +4,8 @@ var ctx = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 2;
-var dy = -2;
+var dx = 3;
+var dy = -3;
 
 var score=0;
 //paddle property for user
@@ -47,14 +47,14 @@ function keyUpHandler(e) {
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
 }
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "blue";
     ctx.fill();
     ctx.closePath();
 }
@@ -71,6 +71,7 @@ function draw() {
     drawBall();
     drawPaddle();
     drawPaddleGame();
+
     // if(paddleGx+speed>canvas.width-paddleWidth){
     //     speed=-speed;
     // }
