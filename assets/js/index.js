@@ -65,13 +65,17 @@ function drawPaddleGame() {
     ctx.fill();
     ctx.closePath();
 }
+var gameOver=0;
 
 function draw() {
+    if(gameOver==1){
+        requestAnimationFrame(draw);
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawPaddleGame();
-
+    
     // if(paddleGx+speed>canvas.width-paddleWidth){
     //     speed=-speed;
     // }
@@ -90,8 +94,8 @@ function draw() {
         else{
             score++;
             console.log(score);
-            document.
-            clearInterval(interval); // Needed for Chrome to end game
+            gameOver=1
+            // clearInterval(interval); // Needed for Chrome to end game
         }
         
     }
@@ -101,8 +105,10 @@ function draw() {
         }
         else {
             alert("GAME OVER");
-            document.location.reload();
-            clearInterval(interval); // Needed for Chrome to end game
+            gameOver=1;
+            y=canvas.height/2;
+            // document.location.reload();
+            // clearInterval(interval); // Needed for Chrome to end game
         }
     }
     
@@ -118,4 +124,32 @@ function draw() {
     y += dy;
 }
 
-var interval = setInterval(draw, 10);
+
+function drawBackground(color){    
+    ctx.beginPath();
+    ctx.fillStyle=color;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.closePath();
+}
+
+function assignFont(){
+    ctx.font='18px sans-serif';
+    ctx.fillStyle='white';
+    ctx.textAlign='center';
+    ctx.fillText("Welcome to our game", 240,100);
+    ctx.fillText("Press ' Space Key ' to Start the Game", 240,150);
+}
+
+window.addEventListener("load",function(){
+   
+    drawBackground("#20761D");
+    assignFont();
+    
+})
+
+document.addEventListener('keyup', event => {
+    if (event.code === 'Space') {
+        gameOver=1;
+        draw();
+    }
+})
